@@ -3,9 +3,10 @@ import tkinter.font as tkFont
 import math
 import bissecao as bissecao
 import newton as newton
+import gauss as gauss
 
 root = tk.Tk()
-root.geometry("320x350")
+root.geometry("700x700")
 root.title("Calculadora")
 
 def bt_Bissecaao():
@@ -27,6 +28,15 @@ def bt_Bissecaao():
     new_epslon_entry.grid_remove()
     new_result.grid_remove()
 
+    gau_bt.grid_remove()
+    gau_emp.grid_remove()
+    gau_expr1_label.grid_remove()
+    gau_expr1_value.grid_remove()
+    gau_expr2_label.grid_remove()
+    gau_expr2_value.grid_remove()
+    gau_expr3_label.grid_remove()
+    gau_expr3_value.grid_remove()
+
 def bt_Newton():
     new_bt.grid()
     new_chute_label.grid()
@@ -46,11 +56,70 @@ def bt_Newton():
     biss_result.grid_remove()
     biss_bt.grid_remove()
 
+    gau_bt.grid_remove()
+    gau_emp.grid_remove()
+    gau_expr1_label.grid_remove()
+    gau_expr1_value.grid_remove()
+    gau_expr2_label.grid_remove()
+    gau_expr2_value.grid_remove()
+    gau_expr3_label.grid_remove()
+    gau_expr3_value.grid_remove()
+
 def bt_Gauss():
-    return
+    gau_bt.grid()
+    gau_emp.grid()
+    gau_expr1_label.grid()
+    gau_expr1_value.grid()
+    gau_expr2_label.grid()
+    gau_expr2_value.grid()
+    gau_expr3_label.grid()
+    gau_expr3_value.grid()
+
+    new_bt.grid_remove()
+    new_chute_label.grid_remove()
+    new_chute_value.grid_remove()
+    new_emp.grid_remove()
+    new_epslon.grid_remove()
+    new_epslon_entry.grid_remove()
+    new_result.grid_remove()
+
+    biss_a_label.grid_remove()
+    biss_a_value.grid_remove()
+    biss_b_label.grid_remove()
+    biss_b_value.grid_remove()
+    biss_emp.grid_remove()
+    biss_epslon.grid_remove()
+    biss_epslon_value.grid_remove()
+    biss_result.grid_remove()
+    biss_bt.grid_remove()
 
 def bt_LU():
-    return
+    new_bt.grid_remove()
+    new_chute_label.grid_remove()
+    new_chute_value.grid_remove()
+    new_emp.grid_remove()
+    new_epslon.grid_remove()
+    new_epslon_entry.grid_remove()
+    new_result.grid_remove()
+
+    gau_bt.grid_remove()
+    gau_emp.grid_remove()
+    gau_expr1_label.grid_remove()
+    gau_expr1_value.grid_remove()
+    gau_expr2_label.grid_remove()
+    gau_expr2_value.grid_remove()
+    gau_expr3_label.grid_remove()
+    gau_expr3_value.grid_remove()
+
+    biss_a_label.grid_remove()
+    biss_a_value.grid_remove()
+    biss_b_label.grid_remove()
+    biss_b_value.grid_remove()
+    biss_emp.grid_remove()
+    biss_epslon.grid_remove()
+    biss_epslon_value.grid_remove()
+    biss_result.grid_remove()
+    biss_bt.grid_remove()
 
 def conta_bissecaao():
     n = float(biss_a_value.get())
@@ -64,6 +133,24 @@ def conta_newton():
     entry1 = float(new_chute_value.get())
     entry2 = float(new_epslon_entry.get())
     result = float(newton.newton(entry1,entry2))
+    new_result.delete(0,'end')
+    new_result.insert(0,result)
+
+def conta_gauss():
+    entry1 = list(gau_expr1_value.get().split(","))
+    entry1 = [int(x) for x in entry1]
+    entry2 = list(gau_expr2_value.get().split(","))
+    entry2 = [int(x) for x in entry2]
+    entry3 = list(gau_expr3_value.get().split(","))
+    entry3 = [int(x) for x in entry3]
+    listA = []
+    listA.append(entry1)
+    listA.append(entry2)
+    listA.append(entry3)
+
+    result = str(gauss.gauss(listA))
+    gau_result = tk.Label(root,text = result)
+    gau_result.grid(row=7, column = 1)
 
 # Fontes
 fontStyle1 = tkFont.Font(family="Times", size=20)
@@ -150,5 +237,40 @@ new_bt.grid_remove()
 new_result = tk.Entry(root,font = fontStyle1,width=10)
 new_result.grid(row=6, column = 1)
 new_result.grid_remove()
+
+##############################################################################
+
+gau_emp = tk.Label(root, text="")
+gau_emp.grid(row=2, column = 0)
+gau_emp.grid_remove()
+
+gau_expr1_label = tk.Label(root, text = "Elemento = ")
+gau_expr1_label.grid(row=3, column = 0)
+gau_expr1_label.grid_remove()
+
+gau_expr1_value = tk.Entry(root, font=fontStyle1,width=20)
+gau_expr1_value.grid(row=3, column = 1)
+gau_expr1_value.grid_remove()
+
+gau_expr2_label = tk.Label(root, text = "Elemento = ")
+gau_expr2_label.grid(row=4, column = 0)
+gau_expr2_label.grid_remove()
+
+gau_expr2_value = tk.Entry(root, font=fontStyle1,width=20)
+gau_expr2_value.grid(row=4, column = 1)
+gau_expr2_value.grid_remove()
+
+gau_expr3_label = tk.Label(root, text = "Elemento = ")
+gau_expr3_label.grid(row=5, column = 0)
+gau_expr3_label.grid_remove()
+
+gau_expr3_value = tk.Entry(root, font=fontStyle1,width=20)
+gau_expr3_value.grid(row=5, column = 1)
+gau_expr3_value.grid_remove()
+
+gau_bt = tk.Button(root, text = "=", command = conta_gauss)
+gau_bt.grid(row=6, column = 1)
+gau_bt.config(height = 2, width = 5)
+gau_bt.grid_remove()
 
 root.mainloop()
