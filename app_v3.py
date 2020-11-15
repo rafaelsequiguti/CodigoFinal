@@ -5,6 +5,7 @@ import bissecao as bissecao
 import newton as newton
 import gauss as gauss
 import lagrange as lagrange
+import interpolador_newton as i_newton
 
 root = tk.Tk()
 root.geometry("700x700")
@@ -46,6 +47,17 @@ def bt_Bissecaao():
     lag_expr2_value.grid_remove()
     lag_expr3_label.grid_remove()
     lag_expr3_value.grid_remove()
+    lag_result.grid_remove()
+
+    inew_bt.grid_remove()
+    inew_emp.grid_remove()
+    inew_expr1_label.grid_remove()
+    inew_expr1_value.grid_remove()
+    inew_expr2_label.grid_remove()
+    inew_expr2_value.grid_remove()
+    inew_expr3_label.grid_remove()
+    inew_expr3_value.grid_remove()
+    inew_result.grid_remove()
 
 def bt_Newton():
     new_bt.grid()
@@ -74,6 +86,7 @@ def bt_Newton():
     gau_expr2_value.grid_remove()
     gau_expr3_label.grid_remove()
     gau_expr3_value.grid_remove()
+    gau_result.grid_remove()
 
     lag_bt.grid_remove()
     lag_emp.grid_remove()
@@ -83,6 +96,17 @@ def bt_Newton():
     lag_expr2_value.grid_remove()
     lag_expr3_label.grid_remove()
     lag_expr3_value.grid_remove()
+    lag_result.grid_remove()
+
+    inew_bt.grid_remove()
+    inew_emp.grid_remove()
+    inew_expr1_label.grid_remove()
+    inew_expr1_value.grid_remove()
+    inew_expr2_label.grid_remove()
+    inew_expr2_value.grid_remove()
+    inew_expr3_label.grid_remove()
+    inew_expr3_value.grid_remove()
+    inew_result.grid_remove()
 
 def bt_Gauss():
     gau_bt.grid()
@@ -120,6 +144,17 @@ def bt_Gauss():
     lag_expr2_value.grid_remove()
     lag_expr3_label.grid_remove()
     lag_expr3_value.grid_remove()
+    lag_result.grid_remove()
+
+    inew_bt.grid_remove()
+    inew_emp.grid_remove()
+    inew_expr1_label.grid_remove()
+    inew_expr1_value.grid_remove()
+    inew_expr2_label.grid_remove()
+    inew_expr2_value.grid_remove()
+    inew_expr3_label.grid_remove()
+    inew_expr3_value.grid_remove()
+    inew_result.grid_remove()
 
 def bt_LU():
     new_bt.grid_remove()
@@ -138,6 +173,7 @@ def bt_LU():
     gau_expr2_value.grid_remove()
     gau_expr3_label.grid_remove()
     gau_expr3_value.grid_remove()
+    gau_result.grid_remove()
 
     biss_a_label.grid_remove()
     biss_a_value.grid_remove()
@@ -157,8 +193,28 @@ def bt_LU():
     lag_expr2_value.grid_remove()
     lag_expr3_label.grid_remove()
     lag_expr3_value.grid_remove()
+    lag_result.grid_remove()
+
+    inew_bt.grid_remove()
+    inew_emp.grid_remove()
+    inew_expr1_label.grid_remove()
+    inew_expr1_value.grid_remove()
+    inew_expr2_label.grid_remove()
+    inew_expr2_value.grid_remove()
+    inew_expr3_label.grid_remove()
+    inew_expr3_value.grid_remove()
+    inew_result.grid_remove()
 
 def bt_Interpolador_Newton():
+    inew_bt.grid()
+    inew_emp.grid()
+    inew_expr1_label.grid()
+    inew_expr1_value.grid()
+    inew_expr2_label.grid()
+    inew_expr2_value.grid()
+    inew_expr3_label.grid()
+    inew_expr3_value.grid()
+    inew_result.grid()
 
     new_bt.grid_remove()
     new_chute_label.grid_remove()
@@ -176,6 +232,7 @@ def bt_Interpolador_Newton():
     gau_expr2_value.grid_remove()
     gau_expr3_label.grid_remove()
     gau_expr3_value.grid_remove()
+    gau_result.grid_remove()
 
     biss_a_label.grid_remove()
     biss_a_value.grid_remove()
@@ -195,6 +252,7 @@ def bt_Interpolador_Newton():
     lag_expr2_value.grid_remove()
     lag_expr3_label.grid_remove()
     lag_expr3_value.grid_remove()
+    lag_result.grid_remove()
 
 def bt_Interpolador_Lagrange():
     lag_bt.grid()
@@ -205,6 +263,7 @@ def bt_Interpolador_Lagrange():
     lag_expr2_value.grid()
     lag_expr3_label.grid()
     lag_expr3_value.grid()
+    lag_result.grid()
 
     new_bt.grid_remove()
     new_chute_label.grid_remove()
@@ -222,6 +281,7 @@ def bt_Interpolador_Lagrange():
     gau_expr2_value.grid_remove()
     gau_expr3_label.grid_remove()
     gau_expr3_value.grid_remove()
+    gau_result.grid_remove()
 
     biss_a_label.grid_remove()
     biss_a_value.grid_remove()
@@ -232,6 +292,16 @@ def bt_Interpolador_Lagrange():
     biss_epslon_value.grid_remove()
     biss_result.grid_remove()
     biss_bt.grid_remove()
+
+    inew_bt.grid_remove()
+    inew_emp.grid_remove()
+    inew_expr1_label.grid_remove()
+    inew_expr1_value.grid_remove()
+    inew_expr2_label.grid_remove()
+    inew_expr2_value.grid_remove()
+    inew_expr3_label.grid_remove()
+    inew_expr3_value.grid_remove()
+    inew_result.grid_remove()
 
 
 def conta_bissecaao():
@@ -273,17 +343,27 @@ def conta_iLagrange():
     entry3 = float(lag_expr3_value.get())
 
     result = float(lagrange.lagrange(entry1,entry2,entry3))
-    lag_result = tk.Label(root, text = result, font = fontStyle1)
-    lag_result.grid(row = 7, column = 1)
+    lag_result.delete(0,'end')
+    lag_result.insert(0,result)
 
 def conta_iNewton():
-    pass
+    entry1 = list(inew_expr1_value.get().split(","))
+    entry1 = [float(x) for x in entry1]
+    entry2 = list(inew_expr2_value.get().split(","))
+    entry2 = [float(x) for x in entry2]
+    entry3 = float(inew_expr3_value.get())
+
+    result = float(i_newton.i_newton(entry1,entry2,entry3))
+    inew_result.delete(0,'end')
+    inew_result.insert(0,result)
+    
 
 # Fontes
 fontStyle1 = tkFont.Font(family="Times", size=20)
 fontStyle2 = tkFont.Font(family="Lucida Grande", size=13)
 
-##################################
+##############################################################################
+
 biss_subtitle = tk.Button(root, text="Método da Bissecção",font = fontStyle2, command = bt_Bissecaao, width = 20)
 biss_subtitle.grid(row=0, column = 0)
 
@@ -302,7 +382,7 @@ lag_subtitle.grid(row=0, column = 2)
 iNew_subtitle = tk.Button(root, text="Interpolador de Lagrange", font = fontStyle2, command = bt_Interpolador_Lagrange, width = 20)
 iNew_subtitle.grid(row=1, column = 2)
 
-##################################
+##############################################################################
 
 biss_emp = tk.Label(root, text="")
 biss_emp.grid(row=2, column = 0)
@@ -407,6 +487,10 @@ gau_bt.grid(row=6, column = 1)
 gau_bt.config(height = 2, width = 5)
 gau_bt.grid_remove()
 
+gau_result = tk.Label(root, text = "", font = fontStyle1)
+gau_result.grid(row = 7, column = 1)
+gau_result.grid_remove()
+
 ##############################################################################
 
 lag_emp = tk.Label(root, text="")
@@ -441,5 +525,48 @@ lag_bt = tk.Button(root, text = "=", command = conta_iLagrange)
 lag_bt.grid(row=6, column = 1)
 lag_bt.config(height = 2, width = 5)
 lag_bt.grid_remove()
+
+lag_result = tk.Entry(root,font = fontStyle1)
+lag_result.grid(row=7, column = 1)
+lag_result.grid_remove()
+
+##############################################################################
+
+inew_emp = tk.Label(root, text="")
+inew_emp.grid(row=2, column = 0)
+inew_emp.grid_remove()
+
+inew_expr1_label = tk.Label(root, text = "Lista X = ")
+inew_expr1_label.grid(row=3, column = 0)
+inew_expr1_label.grid_remove()
+
+inew_expr1_value = tk.Entry(root, font=fontStyle1)
+inew_expr1_value.grid(row=3, column = 1)
+inew_expr1_value.grid_remove()
+
+inew_expr2_label = tk.Label(root, text = "Lista Y = ")
+inew_expr2_label.grid(row=4, column = 0)
+inew_expr2_label.grid_remove()
+
+inew_expr2_value = tk.Entry(root, font=fontStyle1)
+inew_expr2_value.grid(row=4, column = 1)
+inew_expr2_value.grid_remove()
+
+inew_expr3_label = tk.Label(root, text = "Encontrar X = ")
+inew_expr3_label.grid(row=5, column = 0)
+inew_expr3_label.grid_remove()
+
+inew_expr3_value = tk.Entry(root, font=fontStyle1)
+inew_expr3_value.grid(row=5, column = 1)
+inew_expr3_value.grid_remove()
+
+inew_bt = tk.Button(root, text = "=", command = conta_iNewton)
+inew_bt.grid(row=6, column = 1)
+inew_bt.config(height = 2, width = 5)
+inew_bt.grid_remove()
+
+inew_result = tk.Entry(root,font = fontStyle1)
+inew_result.grid(row=7, column = 1)
+inew_result.grid_remove()
 
 root.mainloop()
