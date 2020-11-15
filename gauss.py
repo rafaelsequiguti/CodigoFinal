@@ -1,11 +1,5 @@
 import math
 
-# matriz = [
-#     [2,3,-1,5],
-#     [4,4,-3,3],
-#     [2,-3,1,-1]
-# ]
-
 def gauss (matriz):
     output = ""
     largura = len(matriz[0])

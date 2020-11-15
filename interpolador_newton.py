@@ -1,11 +1,5 @@
 import math
 
-# Input
-
-# x = [1.5,2.5,4.0,5.5,7.0]
-# y = [2.0,2.4,2.3,1.7,0.8]
-# x_find = 3
-
 def funcao(x,y,x1,y1):
     resultado = (y1 - y) / (x1 - x)
     return float(resultado)

@@ -1,12 +1,5 @@
 import math
 
-# Input
-# y = [2.0,2.4,2.3,1.7,0.8]
-
-# x = [1.5,2.5,4.0,5.5,7.0]
-
-# x_find = 3
-
 def lagrange (x,y,find):
     P = 0.0
     for j in range (len(x)):
